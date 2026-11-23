@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download Aplikasi CBT MAS MU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --primary: #16a34a;
+      --primary-hover: #15803d;
+      --primary-soft: #dcfce7;
+      --primary-text: #166534;
+      --warn-bg: #fffbeb;
+      --warn-border: #fde68a;
+      --warn-text: #92400e;
+      --warn-accent: #d97706;
+      --radius: 18px;
+      --shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(180deg, #e2e8f0 0%, var(--bg) 220px);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+      padding: 20px 14px 48px;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .inapp-banner {
+      display: none;
+      background: var(--warn-bg);
+      border: 1.5px solid var(--warn-border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: var(--warn-text);
+      font-size: 0.9rem;
+      box-shadow: 0 4px 14px -6px rgba(217, 119, 6, 0.25);
+    }
+
+    .inapp-banner.visible {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .inapp-banner strong {
+      display: block;
+      font-size: 0.94rem;
+      margin-bottom: 3px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 14px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #16a34a 0%, #0d9488 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 12px 24px -10px rgba(22, 163, 74, 0.55);
+    }
+
+    .app-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .app-sub {
+      font-size: 0.94rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 16px 0 20px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .pill.version {
+      background: var(--primary-soft);
+      border-color: #bbf7d0;
+      color: var(--primary-text);
+    }
+
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 14px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.12s ease;
+      box-shadow: 0 8px 20px -8px rgba(22, 163, 74, 0.65);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.985);
+    }
+
+    .secondary-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 11px 12px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      background: #eef2f6;
+      border-color: #cbd5e1;
+    }
+
+    .download-hint {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .section-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-icon.warn {
+      background: var(--warn-bg);
+      color: var(--warn-accent);
+      border: 1px solid var(--warn-border);
+    }
+
+    .section-icon.info {
+      background: var(--primary-soft);
+      color: var(--primary-text);
+      border: 1px solid #bbf7d0;
+    }
+
+    .section-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .warn-card {
+      background: var(--warn-bg);
+      border-color: var(--warn-border);
+    }
+
+    .warn-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .warn-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.89rem;
+      color: var(--warn-text);
+    }
+
+    .bullet-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      color: #92400e;
+      font-size: 0.76rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .step-content p {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface-soft);
+    }
+
+    .faq-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      padding: 13px 14px;
+      font-family: inherit;
+      font-size: 0.89rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .faq-chevron {
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+      color: var(--muted);
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-body {
+      display: none;
+      padding: 0 14px 13px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      background: #ffffff;
+    }
+
+    .faq-item.open .faq-body {
+      display: block;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 12px 24px -8px rgba(15, 23, 42, 0.45);
+      z-index: 50;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 400px) {
+      .secondary-actions {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 20px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- Banner otomatis jika dibuka dari in-app browser (Lens / WA / Scanner) -->
+    <div id="inAppBanner" class="inapp-banner" role="alert">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <div>
+        <strong>Kamu membuka lewat browser bawaan aplikasi</strong>
+        Agar download tidak macet, tap ikon <strong>titik tiga (⋮)</strong> di pojok kanan atas lalu pilih <strong>Buka di Chrome</strong>.
+      </div>
+    </div>
+
+    <!-- Kartu Utama Download -->
+    <section class="card hero">
+      <div class="app-icon" aria-hidden="true">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </div>
+      <h1 class="app-title">CBT MAS MU</h1>
+      <p class="app-sub">Aplikasi Ujian Berbasis Komputer untuk Siswa (Android)</p>
+
+      <div class="meta-row">
+        <span class="pill version" id="versionBadge">Versi V.1 (Terbaru)</span>
+        <span class="pill" id="sizeBadge">Ukuran ~6,4 MB</span>
+        <span class="pill">Android APK</span>
+      </div>
+
+      <a
+        id="downloadBtn"
+        class="btn-primary"
+        href="https://github.com/Kimberly7-dev/CBT-MAS-MU/releases/latest/download/CBT.MAS.MU.apk"
+        download="CBT.MAS.MU.apk"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span id="downloadBtnText">Download CBT.MAS.MU.apk</span>
+      </a>
+
+      <div class="secondary-actions">
+        <button type="button" id="copyLinkBtn" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          Salin Link APK
+        </button>
+        <a
+          id="releasePageBtn"
+          class="btn-secondary"
+          href="https://github.com/Kimberly7-dev/CBT-MAS-MU/releases/latest"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Halaman Rilis
+        </a>
+      </div>
+
+      <p class="download-hint" id="statusHint">
+        Tautan otomatis mengunduh rilis terbaru dari GitHub resmi sekolah.
+      </p>
+    </section>
+
+    <!-- Panduan Jika Download Macet di Browser Bawaan -->
+    <section class="card warn-card">
+      <div class="section-header">
+        <div class="section-icon warn" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <h2 class="section-title">Download Macet di "Mendownload..."?</h2>
+      </div>
+      <ul class="warn-list">
+        <li>
+          <span class="bullet-num">1</span>
+          <span>Tap ikon <strong>titik tiga (⋮)</strong> di pojok kanan atas layar, lalu pilih <strong>Buka di Chrome</strong> (<em>Open in Chrome</em>) sebelum menekan tombol Download.</span>
+        </li>
+        <li>
+          <span class="bullet-num">2</span>
+          <span>Cek aplikasi <strong>File Saya / My Files → Unduhan (Downloads)</strong>. Sering kali file <strong>CBT.MAS.MU.apk</strong> sebenarnya sudah selesai 100% dan tinggal di-tap.</span>
+        </li>
+        <li>
+          <span class="bullet-num">3</span>
+          <span>Jika muncul pesan <em>"File mungkin berbahaya"</em>, pilih <strong>Tetap download</strong> (peringatan ini normal untuk aplikasi di luar Play Store).</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Cara Install untuk Siswa -->
+    <section class="card">
+      <div class="section-header">
+        <div class="section-icon info" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h2 class="section-title">Cara Install di HP Android</h2>
+      </div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>Download file APK</strong>
+            <p>Tap tombol hijau <strong>Download CBT.MAS.MU.apk</strong> di atas dan tunggu sampai proses unduh selesai.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>Buka file dari notifikasi atau folder Unduhan</strong>
+            <p>Tap file <strong>CBT.MAS.MU.apk</strong> yang baru selesai diunduh untuk memulai pemasangan.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>Izinkan instalasi &amp; tekan Install</strong>
+            <p>Jika diminta izin keamanan, aktifkan <strong>Izinkan dari sumber ini</strong>, kembali satu langkah, lalu tap <strong>Install</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Singkat -->
+    <section class="card">
+      <div class="section-header">
+        <div class="section-icon info" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </div>
+        <h2 class="section-title">Pertanyaan Umum</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button type="button" class="faq-btn" aria-expanded="false">
+            <span>Kenapa muncul peringatan "Aplikasi tidak dikenal"?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body">
+            Android selalu menampilkan peringatan tersebut untuk semua file APK yang dipasang langsung di luar Google Play Store. Pastikan kamu mengunduh hanya dari halaman resmi CBT MAS MU ini.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-btn" aria-expanded="false">
+            <span>Kalau aplikasi tidak bisa terpasang (gagal install)?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body">
+            Pastikan ruang penyimpanan HP masih cukup minimal 50 MB. Jika sebelumnya sudah pernah memasang versi lama, hapus (<em>uninstall</em>) versi lama terlebih dahulu lalu pasang ulang file yang baru.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Distribusi resmi CBT MAS MU · GitHub Releases
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">Link berhasil disalin!</div>
+
+  <script>
+    (function () {
+      const DEFAULT_APK_URL = "https://github.com/Kimberly7-dev/CBT-MAS-MU/releases/latest/download/CBT.MAS.MU.apk";
+      const RELEASES_API = "https://api.github.com/repos/Kimberly7-dev/CBT-MAS-MU/releases/latest";
+
+      const inAppBanner = document.getElementById("inAppBanner");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const downloadBtnText = document.getElementById("downloadBtnText");
+      const versionBadge = document.getElementById("versionBadge");
+      const sizeBadge = document.getElementById("sizeBadge");
+      const copyLinkBtn = document.getElementById("copyLinkBtn");
+      const statusHint = document.getElementById("statusHint");
+      const toast = document.getElementById("toast");
+
+      let currentDownloadUrl = DEFAULT_APK_URL;
+      let toastTimer = null;
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("show");
+        }, 2600);
+      }
+
+      // Deteksi in-app browser (WhatsApp, Google App/Lens, Instagram, WebView)
+      const ua = navigator.userAgent || "";
+      const isInApp = /FBAN|FBAV|Instagram|Line|WhatsApp|GSA|wv\)|; wv\)/i.test(ua);
+      if (isInApp) {
+        inAppBanner.classList.add("visible");
+      }
+
+      // Ambil info rilis terbaru dari GitHub API secara otomatis (jika tersedia)
+      async function loadLatestRelease() {
+        try {
+          const res = await fetch(RELEASES_API, {
+            headers: { Accept: "application/vnd.github+json" }
+          });
+          if (!res.ok) return;
+          const data = await res.json();
+          if (data.tag_name) {
+            versionBadge.textContent = "Versi " + data.tag_name + " (Terbaru)";
+          }
+          if (Array.isArray(data.assets)) {
+            const apkAsset = data.assets.find(function (a) {
+              return a.name && a.name.toLowerCase().endsWith(".apk");
+            });
+            if (apkAsset) {
+              currentDownloadUrl = apkAsset.browser_download_url || DEFAULT_APK_URL;
+              downloadBtn.href = currentDownloadUrl;
+              downloadBtn.setAttribute("download", apkAsset.name);
+              downloadBtnText.textContent = "Download " + apkAsset.name;
+              if (typeof apkAsset.size === "number" && apkAsset.size > 0) {
+                const mb = (apkAsset.size / (1024 * 1024)).toFixed(2).replace(".", ",");
+                sizeBadge.textContent = "Ukuran " + mb + " MB";
+              }
+            }
+          }
+        } catch (err) {
+          // Tetap gunakan link permanen bawaan jika API tidak terjangkau
+        }
+      }
+
+      downloadBtn.addEventListener("click", function () {
+        statusHint.textContent = "Download dimulai... Jika macet, tap titik tiga (⋮) di kanan atas lalu pilih Buka di Chrome.";
+        showToast("Memulai download APK...");
+      });
+
+      copyLinkBtn.addEventListener("click", function () {
+        const text = currentDownloadUrl;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(
+            function () {
+              showToast("Link APK disalin! Tempel di Chrome.");
+            },
+            function () {
+              fallbackCopy(text);
+            }
+          );
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      function fallbackCopy(text) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          showToast("Link APK disalin! Tempel di Chrome.");
+        } catch (e) {
+          showToast("Gagal menyalin link.");
+        }
+        document.body.removeChild(ta);
+      }
+
+      // Accordion FAQ
+      document.querySelectorAll(".faq-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.toggle("open");
+          btn.setAttribute("aria-expanded", String(isOpen));
+        });
+      });
+
+      loadLatestRelease();
+    })();
+  </script>
+</body>
+</html>
